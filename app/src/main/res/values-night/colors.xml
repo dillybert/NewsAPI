@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="textColor">@color/white</color>
+    <color name="mutedTextColor">#50FFFFFF</color>
+    <color name="rippleColor">#1AFFFFFF</color>
+    <color name="categorySelected">#8F7AD5</color>
+</resources>
