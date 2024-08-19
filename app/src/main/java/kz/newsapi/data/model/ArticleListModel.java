@@ -1,4 +1,4 @@
-package kz.newsapi.data;
+package kz.newsapi.data.model;
 
 import com.google.gson.annotations.SerializedName;
 

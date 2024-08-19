@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import kz.newsapi.data.ArticleListModel;
+import kz.newsapi.data.model.ArticleListModel;
 import kz.newsapi.data.Repository;
 import kz.newsapi.ui.BaseViewModel;
 import kz.newsapi.utils.Resource;
@@ -14,11 +14,11 @@ import retrofit2.Response;
 
 public class MainViewModel extends BaseViewModel {
     private final Repository mRepository;
-    private final MutableLiveData<String> mCountryCodeLiveData = new MutableLiveData<>("us");
-    private final MutableLiveData<String> mCategoryLiveData = new MutableLiveData<>();
+    private final MutableLiveData<String> mCountryCodeLiveData = new MutableLiveData<>("ru");
+    private final MutableLiveData<String> mCategoryLiveData = new MutableLiveData<>("business");
     private final MutableLiveData<Resource<ArticleListModel>> mTopHeadlinesLiveData = new MutableLiveData<>();
     private final MutableLiveData<Resource<ArticleListModel>> mArticleByQueryLiveData = new MutableLiveData<>();
-    private final MutableLiveData<Resource<ArticleListModel>> mTopHeadlinesByCategoryLiveData = new MutableLiveData<>();
+    private final MutableLiveData<Resource<ArticleListModel>> mByCategoryLiveData = new MutableLiveData<>();
 
     public MainViewModel() {
         this.mRepository = new Repository();
@@ -36,8 +36,8 @@ public class MainViewModel extends BaseViewModel {
         return mTopHeadlinesLiveData;
     }
 
-    public LiveData<Resource<ArticleListModel>> getTopHeadlinesByCategory() {
-        return mTopHeadlinesByCategoryLiveData;
+    public LiveData<Resource<ArticleListModel>> getNewsByCategory() {
+        return mByCategoryLiveData;
     }
 
     public LiveData<Resource<ArticleListModel>> getArticleByQueryLiveData() {
@@ -71,21 +71,21 @@ public class MainViewModel extends BaseViewModel {
         });
     }
 
-    public void fetchTopHeadlinesByCategory() {
-        mTopHeadlinesByCategoryLiveData.setValue(Resource.loading(null));
-        mRepository.getTopHeadlinesByCategory(getCategory().getValue()).enqueue(new Callback<ArticleListModel>() {
+    public void fetchNewsByCategory() {
+        mByCategoryLiveData.setValue(Resource.loading(null));
+        mRepository.getNewsByCategory(getCategory().getValue(), getCountryCode().getValue()).enqueue(new Callback<ArticleListModel>() {
             @Override
             public void onResponse(@NonNull Call<ArticleListModel> call, @NonNull Response<ArticleListModel> response) {
                 if (response.isSuccessful()) {
-                    mTopHeadlinesByCategoryLiveData.setValue(Resource.success(response.body()));
+                    mByCategoryLiveData.setValue(Resource.success(response.body()));
                 } else {
-                    mTopHeadlinesByCategoryLiveData.setValue(Resource.error(null, "Unknown Error Caught: " + response.message()));
+                    mByCategoryLiveData.setValue(Resource.error(null, "Unknown Error Caught: " + response.message()));
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ArticleListModel> call, @NonNull Throwable throwable) {
-                mTopHeadlinesByCategoryLiveData.setValue(Resource.error(null, "Unknown Error Caught: " + throwable.getMessage()));
+                mByCategoryLiveData.setValue(Resource.error(null, "Unknown Error Caught: " + throwable.getMessage()));
             }
         });
     }

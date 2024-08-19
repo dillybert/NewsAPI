@@ -6,5 +6,5 @@
     <color name="textColor">@color/black</color>
     <color name="mutedTextColor">#50000000</color>
     <color name="rippleColor">#0D000000</color>
-    <color name="categorySelected">#8F7AD5</color>
+    <color name="categorySelected">#EBEBEB</color>
 </resources>

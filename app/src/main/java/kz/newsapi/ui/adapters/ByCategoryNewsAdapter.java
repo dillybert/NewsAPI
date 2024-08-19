@@ -18,18 +18,18 @@ import java.util.List;
 import kz.newsapi.R;
 import kz.newsapi.data.model.ArticleModel;
 
-public class TopHeadlinesAdapter extends RecyclerView.Adapter<TopHeadlinesAdapter.ViewHolder> {
+public class ByCategoryNewsAdapter extends RecyclerView.Adapter<ByCategoryNewsAdapter.ViewHolder> {
     private List<ArticleModel> mArticleList;
 
     @NonNull
     @Override
-    public TopHeadlinesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_top_news_horizontal_list, parent, false);
+    public ByCategoryNewsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_by_category_news_grid_list, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TopHeadlinesAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ByCategoryNewsAdapter.ViewHolder holder, int position) {
         holder.bind(mArticleList.get(position));
     }
 
@@ -52,15 +52,15 @@ public class TopHeadlinesAdapter extends RecyclerView.Adapter<TopHeadlinesAdapte
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            mArticle = itemView.findViewById(R.id.article);
-            mArticleImage = itemView.findViewById(R.id.topNewsImage);
-            mArticleAuthor = itemView.findViewById(R.id.topNewsAuthor);
-            mArticleTitle = itemView.findViewById(R.id.topNewsTitle);
+            mArticle = itemView.findViewById(R.id.byCategoryNewsArticle);
+            mArticleImage = itemView.findViewById(R.id.byCategoryNewsImage);
+            mArticleAuthor = itemView.findViewById(R.id.byCategoryNewsAuthorShimmer);
+            mArticleTitle = itemView.findViewById(R.id.byCategoryNewsTitleShimmer);
         }
 
         public void bind(@NonNull ArticleModel articleModel) {
-            mArticleTitle.setText(articleModel.getTitle());
             mArticleAuthor.setText(articleModel.getAuthor());
+            mArticleTitle.setText(articleModel.getTitle());
             Glide.with(itemView).load(articleModel.getUrlToImage()).into(mArticleImage);
 
             mArticle.setOnClickListener(view -> {

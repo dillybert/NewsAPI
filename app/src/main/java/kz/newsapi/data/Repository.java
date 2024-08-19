@@ -1,5 +1,6 @@
 package kz.newsapi.data;
 
+import kz.newsapi.data.model.ArticleListModel;
 import retrofit2.Call;
 
 public class Repository {
@@ -13,8 +14,8 @@ public class Repository {
         return mApiService.getTopHeadlines(country);
     }
 
-    public Call<ArticleListModel> getTopHeadlinesByCategory(String category) {
-        return mApiService.getTopHeadlinesByCategory(category);
+    public Call<ArticleListModel> getNewsByCategory(String category, String country) {
+        return mApiService.getTopHeadlinesByCategory(category, country);
     }
 
     public Call<ArticleListModel> getArticlesByQuery(String query) {

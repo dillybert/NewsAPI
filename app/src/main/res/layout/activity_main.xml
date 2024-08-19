@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none"
@@ -77,10 +77,9 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
 
-            android:background="@color/mutedTextColor"
+            android:background="?attr/dividerHorizontal"
 
             android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="16dp"
 
             app:layout_constraintTop_toBottomOf="@id/topNewsHorizontalList"
             app:layout_constraintBottom_toTopOf="@id/newsCategoryHeader"/>
@@ -90,10 +89,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="@string/news_category"
+            android:text="@string/by_category"
             android:textSize="26sp"
             android:textColor="@color/textColor"
-            android:fontFamily="@font/inter_medium"
+            android:fontFamily="@font/inter_bold"
 
             android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"
@@ -102,7 +101,226 @@
             app:layout_constraintLeft_toLeftOf="parent" />
 
 
+        <HorizontalScrollView
+            android:id="@+id/categoriesHorizontalScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:scrollbars="none"
+            android:layout_marginTop="15dp"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/newsCategoryHeader">
+
+            <kz.newsapi.ui.custom.SelectableScrollGroup
+                android:id="@+id/selectableCategories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp">
+
+                <kz.newsapi.ui.custom.SelectableView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/category_business"
+                    android:textColor="@color/textColor"
+                    android:fontFamily="@font/inter_bold"
+
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="8dp"
+                    android:layout_marginHorizontal="5dp"
+
+                    android:background="@drawable/bg_category_view"
+                    app:checked="true"/>
+
+                <kz.newsapi.ui.custom.SelectableView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/category_entertainment"
+                    android:textColor="@color/textColor"
+                    android:fontFamily="@font/inter_bold"
+
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="8dp"
+                    android:layout_marginHorizontal="5dp"
+
+                    android:background="@drawable/bg_category_view" />
+
+                <kz.newsapi.ui.custom.SelectableView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/category_general"
+                    android:textColor="@color/textColor"
+                    android:fontFamily="@font/inter_bold"
+
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="8dp"
+                    android:layout_marginHorizontal="5dp"
+
+                    android:background="@drawable/bg_category_view" />
+
+                <kz.newsapi.ui.custom.SelectableView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/category_health"
+                    android:textColor="@color/textColor"
+                    android:fontFamily="@font/inter_bold"
+
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="8dp"
+                    android:layout_marginHorizontal="5dp"
+
+                    android:background="@drawable/bg_category_view" />
+
+                <kz.newsapi.ui.custom.SelectableView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/category_science"
+                    android:textColor="@color/textColor"
+                    android:fontFamily="@font/inter_bold"
+
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="8dp"
+                    android:layout_marginHorizontal="5dp"
+
+                    android:background="@drawable/bg_category_view" />
+
+                <kz.newsapi.ui.custom.SelectableView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/category_sports"
+                    android:textColor="@color/textColor"
+                    android:fontFamily="@font/inter_bold"
+
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="8dp"
+                    android:layout_marginHorizontal="5dp"
+
+                    android:background="@drawable/bg_category_view" />
+
+                <kz.newsapi.ui.custom.SelectableView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/category_technology"
+                    android:textColor="@color/textColor"
+                    android:fontFamily="@font/inter_bold"
+
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="8dp"
+                    android:layout_marginHorizontal="5dp"
+
+                    android:background="@drawable/bg_category_view" />
+
+            </kz.newsapi.ui.custom.SelectableScrollGroup>
+
+        </HorizontalScrollView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/byCategoryNewsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="8dp"
+
+            app:layout_constraintTop_toBottomOf="@id/categoriesHorizontalScroll"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/byCategoryNewsListShimmer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="8dp"
+
+            app:layout_constraintTop_toBottomOf="@id/categoriesHorizontalScroll"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <include
+                        android:layout_width="0dp"
+                        android:layout_height="220dp"
+                        android:layout_weight="1"
+                        layout="@layout/item_by_category_news_grid_list_shimmer" />
+
+                    <include
+                        android:layout_width="0dp"
+                        android:layout_height="220dp"
+                        android:layout_weight="1"
+                        layout="@layout/item_by_category_news_grid_list_shimmer" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <include
+                        android:layout_width="0dp"
+                        android:layout_height="220dp"
+                        android:layout_weight="1"
+                        layout="@layout/item_by_category_news_grid_list_shimmer" />
+
+                    <include
+                        android:layout_width="0dp"
+                        android:layout_height="220dp"
+                        android:layout_weight="1"
+                        layout="@layout/item_by_category_news_grid_list_shimmer" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <include
+                        android:layout_width="0dp"
+                        android:layout_height="220dp"
+                        android:layout_weight="1"
+                        layout="@layout/item_by_category_news_grid_list_shimmer" />
+
+                    <include
+                        android:layout_width="0dp"
+                        android:layout_height="220dp"
+                        android:layout_weight="1"
+                        layout="@layout/item_by_category_news_grid_list_shimmer" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

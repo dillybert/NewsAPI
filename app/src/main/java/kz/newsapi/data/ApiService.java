@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import java.io.IOException;
 
+import kz.newsapi.data.model.ArticleListModel;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -19,7 +20,7 @@ public interface ApiService {
     Call<ArticleListModel> getTopHeadlines(@Query("country") String country);
 
     @GET("/v2/top-headlines")
-    Call<ArticleListModel> getTopHeadlinesByCategory(@Query("category") String category);
+    Call<ArticleListModel> getTopHeadlinesByCategory(@Query("category") String category, @Query("country") String country);
 
     @GET("/v2/everything")
     Call<ArticleListModel> getArticlesByQuery(@Query("query") String query);
@@ -32,7 +33,7 @@ public interface ApiService {
             public Response intercept(Chain chain) throws IOException {
                 Request original = chain.request();
                 Request newRequest = original.newBuilder()
-                        .header("X-Api-Key", "YOUR-API-KEY")
+                        .header("X-Api-Key", "2241d4a47cac45f695894693c00890c8")
                         .build();
 
                 return chain.proceed(newRequest);
