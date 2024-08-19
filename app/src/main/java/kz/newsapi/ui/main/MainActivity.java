@@ -23,7 +23,6 @@ import kz.newsapi.ui.BaseActivity;
 import kz.newsapi.ui.adapters.ByCategoryNewsAdapter;
 import kz.newsapi.ui.adapters.TopHeadlinesAdapter;
 import kz.newsapi.ui.custom.SelectableScrollGroup;
-import kz.newsapi.ui.custom.SelectableScrollGroupListener;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
     private static final String LOG_TAG = MainActivity.class.getName();

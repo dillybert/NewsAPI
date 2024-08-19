@@ -47,7 +47,7 @@ dependencies {
     implementation(libs.retrofit.gson)
 
     implementation(libs.glide)
-    implementation(libs.shimmer);
+    implementation(libs.shimmer)
 
     implementation(libs.androidx.activity)
 
