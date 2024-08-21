@@ -20,7 +20,7 @@ import java.util.Locale;
 
 import kz.newsapi.databinding.ActivityMainBinding;
 import kz.newsapi.ui.BaseActivity;
-import kz.newsapi.ui.adapters.ByCategoryNewsAdapter;
+import kz.newsapi.ui.adapters.NewsByCategoryAdapter;
 import kz.newsapi.ui.adapters.TopHeadlinesAdapter;
 import kz.newsapi.ui.custom.SelectableScrollGroup;
 
@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private static final String LOG_TAG = MainActivity.class.getName();
 
     private TopHeadlinesAdapter mTopHeadlinesAdapter;
-    private ByCategoryNewsAdapter mByCategoryNewsAdapter;
+    private NewsByCategoryAdapter mNewsByCategoryAdapter;
 
     private ShimmerFrameLayout mTopHeadlinesShimmerLayout;
     private ShimmerFrameLayout mNewsByCategoryShimmerLayout;
@@ -59,7 +59,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         SelectableScrollGroup selectableCategories = binding.selectableCategories;
 
         mTopHeadlinesAdapter = new TopHeadlinesAdapter();
-        mByCategoryNewsAdapter = new ByCategoryNewsAdapter();
+        mNewsByCategoryAdapter = new NewsByCategoryAdapter();
 
         RecyclerView topHeadlinesRecyclerView = binding.topNewsHorizontalList;
 
@@ -73,7 +73,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
         RecyclerView newsByCategoryRecyclerView = binding.byCategoryNewsList;
         newsByCategoryRecyclerView.setNestedScrollingEnabled(false);
-        newsByCategoryRecyclerView.setAdapter(mByCategoryNewsAdapter);
+        newsByCategoryRecyclerView.setAdapter(mNewsByCategoryAdapter);
         newsByCategoryRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         viewModel.getTopHeadlines().observe(this, resource -> {
@@ -106,7 +106,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                     newsByCategoryRecyclerView.setVisibility(View.VISIBLE);
                     mNewsByCategoryShimmerLayout.stopShimmer();
                     mNewsByCategoryShimmerLayout.setVisibility(View.INVISIBLE);
-                    mByCategoryNewsAdapter.setArticleList(resource.data.getArticles());
+                    mNewsByCategoryAdapter.setArticleList(resource.data.getArticles());
             }
         });
 

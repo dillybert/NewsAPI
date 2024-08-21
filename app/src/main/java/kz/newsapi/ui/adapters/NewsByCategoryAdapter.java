@@ -18,18 +18,18 @@ import java.util.List;
 import kz.newsapi.R;
 import kz.newsapi.data.model.ArticleModel;
 
-public class ByCategoryNewsAdapter extends RecyclerView.Adapter<ByCategoryNewsAdapter.ViewHolder> {
+public class NewsByCategoryAdapter extends RecyclerView.Adapter<NewsByCategoryAdapter.ViewHolder> {
     private List<ArticleModel> mArticleList;
 
     @NonNull
     @Override
-    public ByCategoryNewsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public NewsByCategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_by_category_news_grid_list, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ByCategoryNewsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NewsByCategoryAdapter.ViewHolder holder, int position) {
         holder.bind(mArticleList.get(position));
     }
 
